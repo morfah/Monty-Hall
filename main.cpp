@@ -8,6 +8,12 @@ using namespace std;
 
 const unsigned int NUMBER_OF_EXPERIMENTS = 1000000;
 const unsigned short NUMBER_OF_DOORS = 3;
+
+const string DEFAULT_COLOR = "\033[1;0m";
+const string RED_COLOR = "\033[1;31m";
+const string YELLOW_COLOR = "\033[1;33m";
+const string GREEN_COLOR = "\033[1;32m";
+
 enum DoorStates
 {
     ClosedEmpty,
@@ -24,7 +30,13 @@ int main()
 {
     if constexpr (NUMBER_OF_DOORS < 3)
     {
-        cerr << "\033[1;31mFATAL: NUMBER_OF_DOORS needs to be at least 3. Exiting...\033[1;0m";
+        cerr << RED_COLOR + "FATAL: NUMBER_OF_DOORS needs to be at least 3. Exiting..." + DEFAULT_COLOR;
+        return -1;
+    }
+
+    if constexpr (NUMBER_OF_EXPERIMENTS < 1)
+    {
+        cerr << RED_COLOR + "FATAL: NUMBER_OF_EXPERIMENTS needs to be at least 1. Exiting..." + DEFAULT_COLOR;
         return -1;
     }
 
@@ -81,7 +93,7 @@ void GetRandomSeed(unsigned int &seed)
     uniform_int_distribution<> distrib(0, UINT_MAX);
     seed = (unsigned int)distrib(gen);
 
-    cout << "\033[1;33mUsing seed: " << seed << " instead.\033[1;0m" << endl;
+    cout << YELLOW_COLOR + "Using seed: " << seed << " instead." + DEFAULT_COLOR << endl;
 }
 
 class Experiment
@@ -179,12 +191,6 @@ double DoExperiment(bool changeDoor, double previousResult)
         success += (result == HiddenPrize);
     }
 
-    // Fixes division by 0 if contestant is really unlucky.
-    if (success == 0)
-    {
-        success++;
-    }
-
     double successRate = (double)success / NUMBER_OF_EXPERIMENTS * 100;
     cout << "Won " << success << " times out of " << NUMBER_OF_EXPERIMENTS << "\t" << GetPercentageResult(successRate, previousResult) << endl;
 
@@ -198,13 +204,17 @@ string GetPercentageResult(double successRate, double previousSuccessRate)
     {
         if (successRate >= previousSuccessRate)
         {
-            color = "\033[1;32m";
+	    color = GREEN_COLOR;
         }
         else
         {
-            color = "\033[1;31m";
+            color = RED_COLOR;
         }
     }
+    else
+    {
+        color = DEFAULT_COLOR;
+    }
 
-    return color + to_string(successRate) + "%\033[1;0m";
+    return color + to_string(successRate) + "%" + DEFAULT_COLOR;
 }
