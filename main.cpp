@@ -16,9 +16,9 @@ const string GREEN_COLOR = "\033[1;32m";
 
 enum DoorStates
 {
-    ClosedEmpty,
-    OpenEmpty,
-    HiddenPrize
+    GoatClosedDoor,
+    GoatOpenedDoor,
+    Car
 };
 
 void SetSeed();
@@ -101,22 +101,22 @@ class Experiment
 public:
     Experiment()
     {
-        // Place the hidden prize behind a random door.
+        // Place the car behind a random door.
         int index = rand() % NUMBER_OF_DOORS;
         for (int i = 0; i < NUMBER_OF_DOORS; i++)
         {
             if (i == index)
             {
-                mDoors[i] = HiddenPrize;
+                mDoors[i] = Car;
             }
             else
             {
-                mDoors[i] = ClosedEmpty;
+                mDoors[i] = GoatClosedDoor;
             }
         }
     }
 
-    // Claims a door. Host opens an empty door and ask if you want to switch.
+    // Claims a door. Host opens a door and ask if you want to switch.
     int ClaimRandomDoor()
     {
         // Claims a random door.
@@ -126,9 +126,9 @@ public:
         while (true)
         {
             int toOpen = rand() % NUMBER_OF_DOORS;
-            if (toOpen != contestantsChoice && mDoors[toOpen] == ClosedEmpty)
+            if (toOpen != contestantsChoice && mDoors[toOpen] == GoatClosedDoor)
             {
-                mDoors[toOpen] = OpenEmpty;
+                mDoors[toOpen] = GoatOpenedDoor;
                 break;
             }
         }
@@ -138,11 +138,11 @@ public:
 
     int ChangeDoor(int currentlyClaimed)
     {
-        // Change door to the a random closed and unclaimed door.
+        // Change door to a random closed and unclaimed door.
         while (true)
         {
             int toOpen = rand() % NUMBER_OF_DOORS;
-            if (toOpen != currentlyClaimed && mDoors[toOpen] != OpenEmpty)
+            if (toOpen != currentlyClaimed && mDoors[toOpen] != GoatOpenedDoor)
             {
                 return toOpen;
             }
@@ -187,8 +187,8 @@ double DoExperiment(bool changeDoor, double previousResult)
 
         DoorStates result = experiment.OpenDoor(door);
 
-        // If we found the hidden prize add it to our success count!
-        success += (result == HiddenPrize);
+        // If we found the car add it to our success count!
+        success += (result == Car);
     }
 
     double successRate = (double)success / NUMBER_OF_EXPERIMENTS * 100;
