@@ -17,3 +17,7 @@ Proves it's better to change door.
 * Start "Developer Command Prompt for VS 2022" or "Developer Powershell for VS 2022".
 * Inside that terminal you access compiler tools and can start "./compile.bat".
 
+### Mac OS (xcode tools)
+* Intall Xcode command-line tools. xcode-select --install
+* g++ -std=c++17 -O2 main.cpp -o main
+
