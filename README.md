@@ -21,5 +21,5 @@ Proves it's better to change door.
 ### Mac OS (Xcode tools)
 1. Open the **terminal**.
 2. Install Xcode command-line tools. `xcode-select --install`
-3. Run `make` inside **build* folder.
+3. Run `make` inside **build** folder.
 4. Run `.\main`. 
