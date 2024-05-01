@@ -10,14 +10,16 @@ Proves it's better to change door.
 
 [More information about the problem](https://en.wikipedia.org/wiki/Monty_Hall_problem "Article on Wikipedia")
 
-## Compile
+## Build and run
 ### Windows (MSVC)
-1. Install Visual Studio Community 2022. (Or use Professional/Enterprise version)
+1. Install **Visual Studio Community 2022**. *Or use Professional/Enterprise version if you have it.*
 2. In the installer check **Desktop development with C++**.
 3. Start **Developer Command Prompt for VS 2022** or **Developer Powershell for VS 2022**.
 4. Inside that terminal you access compiler tools and can run `.\compile.bat` inside the **build** folder.
+5. Run `.\main.exe`.
 
-### Mac OS (xcode tools)
-1. Intall Xcode command-line tools. `xcode-select --install`
-2. `g++ -std=c++17 -O2 main.cpp -o main`
-
+### Mac OS (Xcode tools)
+1. Open the **terminal**.
+2. Install Xcode command-line tools. `xcode-select --install`
+3. Run `make` inside **build* folder.
+4. Run `.\main`. 
