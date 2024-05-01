@@ -49,9 +49,6 @@ int main()
     // Try changing door.
     DoExperiment(true, result);
 
-    cout << endl << "Press <Enter> to exit";
-    getchar();
-
     return 0;
 }
 

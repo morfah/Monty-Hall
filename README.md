@@ -12,12 +12,12 @@ Proves it's better to change door.
 
 ## Compile
 ### Windows (MSVC)
-* Install Visual Studio Community 2022. (Or use Professional/Enterprise version)
-* In the installer check "Desktop development with C++".
-* Start "Developer Command Prompt for VS 2022" or "Developer Powershell for VS 2022".
-* Inside that terminal you access compiler tools and can start "./compile.bat".
+1. Install Visual Studio Community 2022. (Or use Professional/Enterprise version)
+2. In the installer check **Desktop development with C++**.
+3. Start **Developer Command Prompt for VS 2022** or **Developer Powershell for VS 2022**.
+4. Inside that terminal you access compiler tools and can run `.\compile.bat` inside the **build** folder.
 
 ### Mac OS (xcode tools)
-* Intall Xcode command-line tools. xcode-select --install
-* g++ -std=c++17 -O2 main.cpp -o main
+1. Intall Xcode command-line tools. `xcode-select --install`
+2. `g++ -std=c++17 -O2 main.cpp -o main`
 
